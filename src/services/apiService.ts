@@ -1,5 +1,5 @@
 import apiClient from './apiClient';
-import { PaginatedResponse, AuthResult, Department } from '../types/common';
+import { PaginatedResponse, AuthResult, Department, Tag, User } from '../types/common';
 import { Ticket, TicketSummary, CreateTicketRequest, TicketFilters } from '../types/ticket';
 import { Reply, ReplyRequest } from '../types/reply';
 import { Article, ArticleSummary, ArticleCategory, ArticleFilters } from '../types/article';
@@ -156,6 +156,20 @@ export async function submitArticleFeedback(
 export async function getCategories(): Promise<{ data: ArticleCategory[] }> {
   const response = await apiClient.get<{ data: ArticleCategory[] }>('/kb/categories');
   return response.data;
+}
+
+// Tags
+export async function getTags(): Promise<Tag[]> {
+  const response = await apiClient.get('/tags');
+  const data = response.data;
+  return data.data ?? data;
+}
+
+// Validate Token
+export async function validateToken(): Promise<User> {
+  const response = await apiClient.post('/auth/validate');
+  const data = response.data;
+  return data.data ?? data;
 }
 
 // Guest
