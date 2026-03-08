@@ -71,11 +71,11 @@ export interface ThemeColors {
   warning: string;
 }
 
-export function getThemeColors(mode: ThemeMode): ThemeColors {
+export function getThemeColors(mode: ThemeMode, primaryColor?: string): ThemeColors {
   const modeColors = mode === 'light' ? colors.light : colors.dark;
   return {
-    primary: colors.primary,
-    primaryLight: colors.primaryLight,
+    primary: primaryColor ?? colors.primary,
+    primaryLight: primaryColor ?? colors.primaryLight,
     surface: modeColors.surface,
     background: modeColors.background,
     textPrimary: modeColors.textPrimary,

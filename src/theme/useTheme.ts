@@ -17,12 +17,23 @@ export interface ThemeContextType {
   setThemeMode: (mode: ThemeMode) => void;
 }
 
-function buildTheme(mode: ThemeMode): Theme {
+function buildTheme(
+  mode: ThemeMode,
+  overrides?: { primaryColor?: string; borderRadius?: number }
+): Theme {
+  const br = overrides?.borderRadius != null
+    ? {
+        default: overrides.borderRadius,
+        card: overrides.borderRadius + 4,
+        badge: overrides.borderRadius + 16,
+        full: 9999,
+      } as typeof borderRadius
+    : borderRadius;
   return {
     mode,
-    colors: getThemeColors(mode),
+    colors: getThemeColors(mode, overrides?.primaryColor),
     spacing,
-    borderRadius,
+    borderRadius: br,
     fontSize,
     fontWeight,
   };

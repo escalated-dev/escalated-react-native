@@ -50,7 +50,7 @@ export function EscalatedProvider({ config, children }: EscalatedProviderProps) 
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider initialMode={themeMode}>
+      <ThemeProvider initialMode={themeMode} primaryColor={config.primaryColor} borderRadius={config.borderRadius}>
         <I18nProvider initialLocale={locale}>
           <AuthProvider>
             {children}

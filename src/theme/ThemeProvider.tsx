@@ -5,9 +5,16 @@ import { ThemeContext, buildTheme } from './useTheme';
 interface ThemeProviderProps {
   children: React.ReactNode;
   initialMode?: ThemeMode;
+  primaryColor?: string;
+  borderRadius?: number;
 }
 
-export function ThemeProvider({ children, initialMode = 'light' }: ThemeProviderProps) {
+export function ThemeProvider({
+  children,
+  initialMode = 'light',
+  primaryColor,
+  borderRadius,
+}: ThemeProviderProps) {
   const [mode, setMode] = useState<ThemeMode>(initialMode);
 
   const toggleTheme = useCallback(() => {
@@ -20,11 +27,11 @@ export function ThemeProvider({ children, initialMode = 'light' }: ThemeProvider
 
   const value = useMemo(
     () => ({
-      theme: buildTheme(mode),
+      theme: buildTheme(mode, { primaryColor, borderRadius }),
       toggleTheme,
       setThemeMode,
     }),
-    [mode, toggleTheme, setThemeMode]
+    [mode, primaryColor, borderRadius, toggleTheme, setThemeMode]
   );
 
   return React.createElement(ThemeContext.Provider, { value }, children);
