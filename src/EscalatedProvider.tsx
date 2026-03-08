@@ -42,7 +42,7 @@ export function EscalatedProvider({ config, children }: EscalatedProviderProps) 
     if (config.authHooks) {
       setAuthHooks(config.authHooks);
     } else {
-      setAuthHooks(new DefaultAuthHooks());
+      setAuthHooks(new DefaultAuthHooks(config.apiBaseUrl));
     }
   }, [config.authHooks]);
 

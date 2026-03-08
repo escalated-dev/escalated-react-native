@@ -15,9 +15,9 @@ const apiClient: AxiosInstance = axios.create({
 apiClient.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const hooks = getAuthHooks();
-    const token = await hooks.getToken();
-    if (token && config.headers) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const headers = await hooks.getAuthHeaders();
+    if (config.headers && headers.Authorization) {
+      config.headers.Authorization = headers.Authorization;
     }
     return config;
   },
@@ -26,10 +26,20 @@ apiClient.interceptors.request.use(
 
 apiClient.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
+  async (error) => {
+    const statusCode = error.response?.status;
+    if (statusCode) {
       const hooks = getAuthHooks();
-      hooks.removeToken();
+      const body = error.response?.data ?? {};
+      const recovered = await hooks.onAuthError(statusCode, body);
+      if (recovered && error.config) {
+        // Retry the request with refreshed headers
+        const newHeaders = await hooks.getAuthHeaders();
+        if (newHeaders.Authorization) {
+          error.config.headers.Authorization = newHeaders.Authorization;
+        }
+        return apiClient.request(error.config);
+      }
     }
     return Promise.reject(error);
   }

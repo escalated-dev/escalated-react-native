@@ -16,11 +16,11 @@ export interface AuthContextType {
 function useLoginMutation() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ email, password }: { email: string; password: string }) =>
-      apiService.login(email, password),
-    onSuccess: async (data) => {
+    mutationFn: ({ email, password }: { email: string; password: string }) => {
       const hooks = getAuthHooks();
-      await hooks.setToken(data.token);
+      return hooks.onLogin(email, password);
+    },
+    onSuccess: async (data) => {
       queryClient.setQueryData(['currentUser'], data.user);
       queryClient.invalidateQueries({ queryKey: ['currentUser'] });
     },
@@ -34,16 +34,16 @@ function useRegisterMutation() {
       name,
       email,
       password,
-      password_confirmation,
     }: {
       name: string;
       email: string;
       password: string;
       password_confirmation: string;
-    }) => apiService.register(name, email, password, password_confirmation),
-    onSuccess: async (data) => {
+    }) => {
       const hooks = getAuthHooks();
-      await hooks.setToken(data.token);
+      return hooks.onRegister({ name, email, password });
+    },
+    onSuccess: async (data) => {
       queryClient.setQueryData(['currentUser'], data.user);
       queryClient.invalidateQueries({ queryKey: ['currentUser'] });
     },
@@ -67,7 +67,7 @@ export function useLogout() {
       // Ignore logout errors
     }
     const hooks = getAuthHooks();
-    await hooks.removeToken();
+    await hooks.onLogout();
     queryClient.clear();
   }, [queryClient]);
 }
@@ -78,8 +78,8 @@ export function useCurrentUser() {
   useEffect(() => {
     const checkToken = async () => {
       const hooks = getAuthHooks();
-      const token = await hooks.getToken();
-      setHasToken(!!token);
+      const headers = await hooks.getAuthHeaders();
+      setHasToken(!!headers.Authorization);
     };
     checkToken();
   }, []);
