@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   Switch,
+  Linking,
 } from 'react-native';
 import { useTheme } from '../../theme/useTheme';
 import { spacing, borderRadius, fontSize } from '../../theme/spacing';
@@ -142,6 +143,21 @@ export function SettingsScreen() {
           </Text>
         </TouchableOpacity>
       )}
+
+      {/* Powered by Escalated */}
+      <View style={styles.poweredByContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            Linking.openURL('https://escalated.dev');
+          }}
+          activeOpacity={0.7}
+          style={styles.poweredByLink}
+        >
+          <Text style={[styles.poweredByText, { color: theme.colors.textSecondary }]}>
+            Powered by Escalated
+          </Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
@@ -240,5 +256,21 @@ const styles = StyleSheet.create({
   logoutText: {
     fontSize: fontSize.lg,
     fontWeight: '600',
+  },
+  poweredByContainer: {
+    marginTop: spacing.xl,
+    marginBottom: spacing.md,
+    alignItems: 'center',
+  },
+  poweredByLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    opacity: 0.5,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.md,
+  },
+  poweredByText: {
+    fontSize: 11,
+    fontWeight: '400',
   },
 });
