@@ -69,7 +69,7 @@ export function GuestCreateScreen({ navigation }: Props) {
   };
 
   const errorMessage = createTicket.error
-    ? (createTicket.error as Record<string, Record<string, string>>)?.response?.data?.message || t('error')
+    ? (createTicket.error as unknown as Record<string, Record<string, string>>)?.response?.data?.message || t('error')
     : null;
 
   return (
