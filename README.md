@@ -4,6 +4,7 @@
 [![React Native](https://img.shields.io/badge/react--native-0.73+-61DAFB?logo=react&logoColor=white)](https://reactnative.dev/)
 [![TypeScript](https://img.shields.io/badge/typescript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Views](https://hits.sh/github.com/escalated-dev/escalated-react-native.svg?style=flat&label=views&color=007ec6)](https://hits.sh/github.com/escalated-dev/escalated-react-native/)
 
 A full-featured, embeddable support ticket UI for React Native apps. Drop it into any React Native project — get a complete customer-facing helpdesk with ticket management, knowledge base, guest access, and SLA tracking. Connects to the Escalated REST API.
 
