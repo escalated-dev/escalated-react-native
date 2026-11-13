@@ -1,253 +1,119 @@
-# Escalated for React Native
+<p align="center">
+  <a href="https://escalated.dev"><img src="https://raw.githubusercontent.com/escalated-dev/escalated/main/docs/assets/readme/logo.png" width="72" height="72" alt="Escalated"></a>
+</p>
 
-[![Tests](https://github.com/escalated-dev/escalated-react-native/actions/workflows/run-tests.yml/badge.svg)](https://github.com/escalated-dev/escalated-react-native/actions/workflows/run-tests.yml)
-[![React Native](https://img.shields.io/badge/react--native-0.73+-61DAFB?logo=react&logoColor=white)](https://reactnative.dev/)
-[![TypeScript](https://img.shields.io/badge/typescript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Views](https://hits.sh/github.com/escalated-dev/escalated-react-native.svg?style=flat&label=views&color=007ec6)](https://hits.sh/github.com/escalated-dev/escalated-react-native/)
+<h1 align="center">Escalated for React Native</h1>
 
-A full-featured, embeddable support ticket UI for React Native apps. Drop it into any React Native project — get a complete customer-facing helpdesk with ticket management, knowledge base, guest access, and SLA tracking. Connects to the Escalated REST API.
+<p align="center">
+  Add a customer support area to your React Native app.<br>
+  Tickets, a knowledge base and guest tickets, talking to your Escalated backend's REST API.
+</p>
 
-> **[escalated.dev](https://escalated.dev)** — Learn more, view demos, and compare Cloud vs Self-Hosted options.
+<p align="center">
+  <a href="https://escalated.dev"><b>Website</b></a> ·
+  <a href="https://escalated.dev/docs"><b>Docs</b></a> ·
+  <a href="https://escalated.dev/cloud"><b>Cloud</b></a> ·
+  <a href="https://github.com/escalated-dev/escalated-react-native/releases"><b>Releases</b></a>
+</p>
 
-**One provider, full support experience.** Wrap your app with `EscalatedProvider`, point it at your API, and every screen is ready — login, tickets, knowledge base, guest access. Customize colors, auth behavior, and locale with a single config object. TypeScript throughout.
+<br>
+
+## What it does
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>Every support screen, ready to navigate</h3>
+      Ticket list, ticket detail with replies and SLA timers, new ticket with attachments, and knowledge base screens, with pre-built React Navigation stacks.
+    </td>
+    <td width="50%" valign="top">
+      <h3>Fits your app instead of fighting it</h3>
+      One provider holds your colours, radius, locale and dark mode, and auth hooks let you plug in the sign-in you already have.
+    </td>
+  </tr>
+</table>
 
 ## Features
 
-- **Ticket management** — Create, view, filter, and reply to support tickets with file attachments
-- **Knowledge base** — Searchable article list for self-service support
-- **Guest tickets** — Anonymous ticket submission without requiring authentication
-- **SLA tracking** — Real-time SLA countdown timers on ticket detail views
-- **Satisfaction ratings** — Post-resolution CSAT ratings with star display
-- **Auth hooks** — Override login, logout, register, and token retrieval to integrate with your existing auth
-- **React Query** — Data fetching, caching, and synchronization out of the box
-- **Navigation helpers** — Pre-built tab, auth, and guest navigation stacks for React Navigation
-- **Dark mode** — Full dark and light theme support with `ThemeProvider` and `useTheme` hook
-- **i18n** — Localized in 4 languages (English, Spanish, French, German)
-- **TypeScript** — Full type definitions for every screen, component, hook, and config option
-- **Configurable** — API base URL, auth hooks, primary color, border radius, dark mode, default locale
+<table>
+<tr>
+<td width="33%" valign="top">
 
-## Requirements
+**Tickets**
+- Create, view, filter and reply
+- File attachments on tickets and replies
+- SLA countdown timers on ticket detail
 
-- React Native 0.72+
-- React 18+
-- Node.js 18+
-- A running Escalated backend (Laravel, Rails, Django, AdonisJS, or WordPress)
+</td>
+<td width="33%" valign="top">
 
-## Quick Start
+**Self-service**
+- Searchable knowledge base
+- Post-resolution CSAT star ratings
+- Guest tickets without an account
 
-Install the package:
+</td>
+<td width="33%" valign="top">
+
+**Auth and data**
+- Override login, logout, register and token
+- React Query fetching and caching
+
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top">
+
+**Navigation**
+- Pre-built tab, auth and guest stacks
+- Drops into React Navigation
+
+</td>
+<td width="33%" valign="top">
+
+**Look and language**
+- Dark and light themes with `useTheme`
+- English, Spanish, French, German
+- Configurable colour, radius, locale and API URL
+
+</td>
+<td width="33%" valign="top">
+
+**TypeScript**
+- Types for every screen, component and hook
+- Typed config options
+
+</td>
+</tr>
+</table>
+
+<p align="center"><sub><a href="docs/features.md">Every feature in detail</a></sub></p>
+
+<p align="center">
+  <a href="https://reactnative.dev"><img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native"></a>
+  <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"></a>
+  <a href="https://tanstack.com/query"><img src="https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt="React Query"></a>
+  <a href="https://reactnavigation.org"><img src="https://img.shields.io/badge/React_Navigation-6B52AE?style=for-the-badge" alt="React Navigation"></a>
+</p>
+
+## Quick start
 
 ```bash
 npm install @escalated-dev/escalated-react-native
-```
-
-Install peer dependencies:
-
-```bash
 npm install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs react-native-screens react-native-safe-area-context
 ```
 
-Wrap your app with `EscalatedProvider`:
+Then wrap your app in `EscalatedProvider` with your API base URL. The [installation guide](docs/installation.md) shows the full setup and every config option.
 
-```tsx
-import { EscalatedProvider, TicketListScreen } from '@escalated-dev/escalated-react-native';
+## Learn more
 
-<EscalatedProvider config={{ apiBaseUrl: 'https://yourapp.com/support/api/v1' }}>
-  <NavigationContainer>
-    {/* Wire screens into your navigation */}
-  </NavigationContainer>
-</EscalatedProvider>
-```
+- [All features](docs/features.md) · [Installation and configuration](docs/installation.md)
+- [Screens, components and navigation](docs/screens-and-components.md) · [Auth hooks](docs/auth-hooks.md)
+- [Theming](docs/theming.md) · [Internationalization](docs/internationalization.md)
+- [Escalated docs](https://escalated.dev/docs)
 
-That's it — your app now has a full support ticket UI.
-
-## Configuration
-
-The `EscalatedProvider` config prop accepts the following options:
-
-```tsx
-<EscalatedProvider
-  config={{
-    apiBaseUrl: 'https://yourapp.com/support/api/v1',
-    authHooks: myAuthHooks,
-    primaryColor: '#4F46E5',
-    borderRadius: 12,
-    darkMode: false,
-    defaultLocale: 'en',
-  }}
->
-  {children}
-</EscalatedProvider>
-```
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `apiBaseUrl` | `string` | required | Base URL for the Escalated REST API |
-| `authHooks` | `EscalatedAuthHooks` | `undefined` | Custom auth hook overrides |
-| `primaryColor` | `string` | `'#4F46E5'` | Primary action color for buttons and accents |
-| `borderRadius` | `number` | `8` | Border radius for cards, inputs, and buttons |
-| `darkMode` | `boolean` | `false` | Enable dark theme |
-| `defaultLocale` | `string` | `'en'` | Default locale code (`en`, `es`, `fr`, `de`) |
-
-## Available Screens
-
-| Screen | Description |
-|--------|-------------|
-| `LoginScreen` | Email/password login form |
-| `RegisterScreen` | New account registration |
-| `TicketListScreen` | Paginated ticket list with status filters |
-| `TicketCardScreen` | Individual ticket card view |
-| `TicketFilterScreen` | Advanced ticket filter controls |
-| `CreateTicketScreen` | New ticket form with file attachments |
-| `TicketDetailScreen` | Full ticket thread with replies and metadata |
-| `KBListScreen` | Knowledge base article listing |
-| `KBArticleScreen` | Single article view |
-| `GuestCreateScreen` | Anonymous ticket submission |
-| `GuestTicketScreen` | Guest ticket view via token |
-| `SettingsScreen` | User preferences and locale selection |
-
-## Available Components
-
-| Component | Description |
-|-----------|-------------|
-| `StatusBadge` | Ticket status indicator |
-| `PriorityBadge` | Priority level indicator |
-| `SlaTimer` | SLA countdown display |
-| `AttachmentList` | File attachment display |
-| `FilePicker` | File selection for attachments |
-| `SatisfactionRating` | Star rating display and input |
-| `ReplyThread` | Chronological message thread |
-| `ReplyComposer` | Reply text input with attachments |
-| `EmptyState` | Placeholder for empty lists |
-| `LoadingSkeleton` | Skeleton loading placeholder |
-
-## Navigation Helpers
-
-Escalated provides pre-built navigation stacks for React Navigation:
-
-```tsx
-import {
-  createEscalatedTabs,
-  createAuthStack,
-  createGuestStack,
-} from '@escalated-dev/escalated-react-native';
-
-// Full tabbed experience (Tickets, Knowledge Base, Settings)
-const EscalatedTabs = createEscalatedTabs();
-
-// Auth screens only (Login, Register)
-const AuthStack = createAuthStack();
-
-// Guest screens only (GuestCreate, GuestTicket)
-const GuestStack = createGuestStack();
-```
-
-Wire them into your existing navigation tree:
-
-```tsx
-<NavigationContainer>
-  <Stack.Navigator>
-    <Stack.Screen name="Support" component={EscalatedTabs} />
-    <Stack.Screen name="Auth" component={AuthStack} />
-    <Stack.Screen name="Guest" component={GuestStack} />
-  </Stack.Navigator>
-</NavigationContainer>
-```
-
-## Auth Hooks
-
-Auth hooks let you override default authentication behavior to integrate with your app's existing auth system:
-
-```tsx
-<EscalatedProvider
-  config={{
-    apiBaseUrl: 'https://yourapp.com/support/api/v1',
-    authHooks: {
-      onLogin: async (email, password) => {
-        // Your custom login logic
-        return yourAuthToken;
-      },
-      onLogout: async () => {
-        // Your custom logout logic
-      },
-      onRegister: async (name, email, password) => {
-        // Your custom registration logic
-        return yourAuthToken;
-      },
-      getToken: async () => {
-        // Return the current auth token
-        return await AsyncStorage.getItem('token');
-      },
-    },
-  }}
->
-  {children}
-</EscalatedProvider>
-```
-
-When no auth hooks are provided, Escalated uses its built-in Axios HTTP client for token management.
-
-## Theme
-
-Escalated includes a `ThemeProvider` and `useTheme` hook for dark/light mode support:
-
-```tsx
-import { useTheme } from '@escalated-dev/escalated-react-native';
-
-function MyComponent() {
-  const { colors, darkMode, toggleDarkMode } = useTheme();
-
-  return (
-    <View style={{ backgroundColor: colors.background }}>
-      <Text style={{ color: colors.text }}>Themed content</Text>
-    </View>
-  );
-}
-```
-
-Theme values (primary color, border radius, dark mode) are set via the `EscalatedProvider` config and accessible anywhere via `useTheme`.
-
-## Internationalization
-
-Escalated ships with translations for four languages:
-
-| Code | Language |
-|------|----------|
-| `en` | English |
-| `es` | Spanish |
-| `fr` | French |
-| `de` | German |
-
-Set the default locale via `config.defaultLocale` or let users switch in the Settings screen.
-
-## Peer Dependencies
-
-| Package | Purpose |
-|---------|---------|
-| `react` | React core |
-| `react-native` | React Native core |
-| `@react-navigation/native` | Navigation container |
-| `@react-navigation/native-stack` | Stack navigator |
-| `@react-navigation/bottom-tabs` | Tab navigator |
-| `react-native-screens` | Native screen primitives |
-| `react-native-safe-area-context` | Safe area insets |
-
-## Also Available For
-
-| Framework | Package | Repository |
-|-----------|---------|------------|
-| Laravel | `escalated-dev/escalated-laravel` | [GitHub](https://github.com/escalated-dev/escalated-laravel) |
-| Ruby on Rails | `escalated` (gem) | [GitHub](https://github.com/escalated-dev/escalated-rails) |
-| Django | `escalated-django` | [GitHub](https://github.com/escalated-dev/escalated-django) |
-| AdonisJS | `@escalated-dev/escalated-adonis` | [GitHub](https://github.com/escalated-dev/escalated-adonis) |
-| WordPress | `escalated-wordpress` | [GitHub](https://github.com/escalated-dev/escalated-wordpress) |
-| Vue UI | `@escalated-dev/escalated` | [GitHub](https://github.com/escalated-dev/escalated) |
-| Flutter | `escalated` (Flutter) | [GitHub](https://github.com/escalated-dev/escalated-flutter) |
-| React Native | `@escalated-dev/escalated-react-native` | [GitHub](https://github.com/escalated-dev/escalated-react-native) |
-
-Same architecture, same REST API, same support experience — for every major framework.
+Escalated is also available for [Flutter](https://github.com/escalated-dev/escalated-flutter), and as a web helpdesk for [Laravel](https://github.com/escalated-dev/escalated-laravel), [Rails](https://github.com/escalated-dev/escalated-rails), [Django](https://github.com/escalated-dev/escalated-django), [NestJS](https://github.com/escalated-dev/escalated-nestjs), [AdonisJS](https://github.com/escalated-dev/escalated-adonis), [Symfony](https://github.com/escalated-dev/escalated-symfony), [Phoenix](https://github.com/escalated-dev/escalated-phoenix), [Go](https://github.com/escalated-dev/escalated-go), [.NET](https://github.com/escalated-dev/escalated-dotnet), [Spring](https://github.com/escalated-dev/escalated-spring), [WordPress](https://github.com/escalated-dev/escalated-wordpress) and [Filament](https://github.com/escalated-dev/escalated-filament).
 
 ## License
 
-MIT - Copyright (c) Escalated.dev. See [LICENSE](LICENSE).
+MIT. Copyright (c) Escalated.dev. See [LICENSE](LICENSE).
